@@ -8,7 +8,7 @@
   "description": "Kaori blog",
   "main": "app.js",
   "scripts": {
-    "start": "node your-script.js"
+    "start": "index.js"
   },
   "author": "Ben",
   "license": "MIT",
