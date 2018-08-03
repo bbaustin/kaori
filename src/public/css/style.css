@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Questrial', sans-serif;
+  background: #ED7498;
+}
+.content {
+  white-space: pre-wrap;
+}
+.shelf {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shelf a {
+  text-decoration: none;
+  width: 30%;
+  margin: 1%;
+  text-align: center;
+  border-radius: 10px;
+  color: #433633;
+  background: #F7D2D2;
+}
