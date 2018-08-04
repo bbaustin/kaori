@@ -4,6 +4,10 @@ body {
   font-family: 'Questrial', sans-serif;
   background: #ED7498;
 }
+nav {
+  display: flex;
+  justify-content: space-around;
+}
 .content {
   white-space: pre-wrap;
 }
@@ -19,4 +23,13 @@ body {
   border-radius: 10px;
   color: #433633;
   background: #F7D2D2;
+}
+input,
+textarea {
+  display: block;
+}
+.toDelete {
+  position: fixed;
+  right: 10px;
+  top: 10px;
 }

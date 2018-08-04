@@ -10,15 +10,16 @@ var ajax = {
   dataType: 'json',
   success: function(articles) {
     var storedArticles = [];
-    //check if shelf exists 
     for (var i = 0; i < articles.length; i++) {
         storedArticles.push(articles[i]); // 7/6: Not sure if needed. Might be useful to access all storedArticles from front end. Hide all, etc. 
-        $('.shelf').append(
-          '<a href="/' + articles[i]._id + '"><div class="artbox"><h3>' 
-            + articles[i].title + '</h3></div></a>'
+        $('ul').append(
+          '<li><h3>' 
+            + articles[i].title + ': </h3><h2>' + articles[i]._id + '</h2></div></li>'
         );
-        
     }
+    $('h2').on('click', function() {
+      $('#idToDelete').val($(this).text());
+    })
 
   },
   error: function(err) {

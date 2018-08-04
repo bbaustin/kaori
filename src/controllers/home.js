@@ -21,6 +21,22 @@ HomeController.route('/thanks')
 })
 
 
+HomeController.route('/delete')
+.get(function(req, res, next) {
+  res.render('delete');
+})
+.post(function(req, res, next) {
+  Article.findOneAndDelete({_id: req.body.idToDelete}, function(err){
+    if(!err) {
+      console.log('successful delete. id: ' + req.body.idToDelete);
+    }
+    else {
+      console.log('err: ' + err);
+    }
+    res.redirect('back');
+  });
+});
+
 HomeController.route('/make') 
 .get(function(req, res, next) {
   res.render('make')

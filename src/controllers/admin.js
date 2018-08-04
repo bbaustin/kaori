@@ -7,7 +7,7 @@ var express          = require('express'),
     session          = require('express-session');
        
 
-AdminController.route('/?') 
+AdminController.route('/admin') 
 .get(function(req, res, next) {
   console.log('hey!!!!!!!!!!!!!')
   res.render('make');
