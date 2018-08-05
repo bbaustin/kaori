@@ -26,9 +26,9 @@ HomeController.route('/delete')
   res.render('delete');
 })
 .post(function(req, res, next) {
-  Article.findOneAndDelete({_id: req.body.idToDelete}, function(err){
+  Article.findOneAndDelete({_id: req.body.idToChange}, function(err){
     if(!err) {
-      console.log('successful delete. id: ' + req.body.idToDelete);
+      console.log('successful delete. id: ' + req.body.idToChange);
     }
     else {
       console.log('err: ' + err);
@@ -36,6 +36,34 @@ HomeController.route('/delete')
     res.redirect('back');
   });
 });
+
+HomeController.route('/update')
+.get(function(req, res, next) {
+  res.render('update');
+})
+.post(function(req, res, next) {
+  Article.findOneAndUpdate(
+    {_id: req.body.idToChange}, 
+    { $set: {'title': req.body.titleToChange, 'content': req.body.contentToChange}},   /// didn't work lol 
+    {new: true},
+    function (err) {
+      if(err) {
+        console.log('update err: ' + err);
+      }
+      else {
+        console.log('update - no error i guess?')
+      }
+      res.redirect('back');
+    });
+});
+
+
+// db.restaurant.updateOne(
+//       { "name" : "Central Perk Cafe" },
+//       { $set: { "violations" : 3 } }
+//    );
+
+
 
 HomeController.route('/make') 
 .get(function(req, res, next) {
