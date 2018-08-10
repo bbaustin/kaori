@@ -2,7 +2,16 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Questrial', sans-serif;
-  background: #ED7498;
+  background: linear-gradient(#f06eaa 40%, #00a99d) fixed;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
 }
 nav {
   display: flex;
@@ -12,18 +21,46 @@ nav {
 #contentToChange {
   white-space: pre-wrap;
 }
-.shelf {
-  display: flex;
-  flex-wrap: wrap;
-}
-.shelf a {
-  text-decoration: none;
-  width: 30%;
-  margin: 1%;
-  text-align: center;
+.rightMain {
+  width: 40%;
+  min-height: 100px;
+  float: left;
+  background: #f0c4d7;
   border-radius: 10px;
-  color: #433633;
-  background: #F7D2D2;
+  color: #494949;
+}
+.leftMain {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.leftMain a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.leftMain .artbox {
+  background: #abd6d7;
+  width: 100%;
+  margin: 1%;
+  border-radius: 10px;
+  color: #494949;
+  text-decoration: none;
+  clear: both;
+}
+.leftMain .artbox img {
+  width: 100%;
+}
+.leftMain .artbox .aTop {
+  width: 100%;
+}
+.leftMain .artbox .aLeft {
+  float: left;
+  width: 70%;
+}
+.leftMain .artbox .aRight {
+  float: left;
+  width: 30%;
 }
 input,
 textarea {
@@ -33,4 +70,9 @@ textarea {
   position: fixed;
   right: 50px;
   top: 50px;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

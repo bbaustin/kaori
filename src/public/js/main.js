@@ -11,11 +11,14 @@ var ajax = {
   success: function(articles) {
     var storedArticles = [];
     //check if shelf exists 
-    for (var i = 0; i < articles.length; i++) {
-        storedArticles.push(articles[i]); // 7/6: Not sure if needed. Might be useful to access all storedArticles from front end. Hide all, etc. 
-        $('.shelf').append(
-          '<a href="/' + articles[i]._id + '"><div class="artbox"><h3>' 
-            + articles[i].title + '</h3></div></a>'
+    for (var i = articles.length-1; i >= 0; i--) {
+        storedArticles.push(articles[i]); 
+        $('.leftMain').append(
+          '<a href="/' + articles[i]._id        + '"> <div class="artbox clearfix">  <div class="aTop">  <h3> ' 
+                       + articles[i].title      + '   </h3>                 <small>' 
+                       + articles[i].date       + '   </small>              </div>              <div class="aLeft">   <p>' 
+                       + articles[i].content    + '   </p>                  </div>              <div class="aRight">  <img src="' 
+                       + articles[i].pictureURL + '"> </div>                </div>              </a>'
         );
         
     }

@@ -2,7 +2,11 @@ body {
   margin:  0;
   padding: 0;
   font-family: 'Questrial', sans-serif;
-  background: @pink;
+  background: linear-gradient(@pink 40%, @teal) fixed;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -14,19 +18,48 @@ nav {
   white-space: pre-wrap;
 }
 
-.shelf {
+.rightMain {
+  width: 40%;
+  min-height: 100px;
+  float: left;
+  background: @lightpink;
+  border-radius: 10px;
+  color: @black;
+}
+
+.leftMain {
+  float: left;
   display: flex;
-  flex-wrap: wrap;
-  a {
+  flex-direction: column;
+  width: 60%;
+  a { 
     text-decoration: none;
-    width: 30%;
+    cursor: pointer;
+  }
+  .artbox {
+    background: @lightteal;
+    width: 100%;
     margin: 1%;
-    text-align: center;
+    // display: flex;
+    
     border-radius: 10px;
-
-
     color: @black;
-    background: @white;
+    text-decoration: none;
+    clear: both;
+    img {
+      width: 100%;
+    }
+    .aTop {
+      width: 100%;
+    }
+    .aLeft {
+      float: left;
+      width: 70%;
+    }
+    .aRight {
+      float: left;
+      width: 30%;
+    }
   }
 
 }
@@ -40,6 +73,12 @@ input, textarea {
   right: 50px;
   top: 50px;
 
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 

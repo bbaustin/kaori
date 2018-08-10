@@ -6,6 +6,8 @@ var ArticleSchema = new mongoose.Schema({
   author: String,
   content: String,
   keywords: [String],
+  pictureURL: String, 
+  views: Number, 
   date: { type: Date, default: Date.now }
 });
 

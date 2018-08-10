@@ -70,11 +70,11 @@ HomeController.route('/make')
   res.render('make')
 })
 .post(function(req, res, next) {
-  console.log('do anything??????????????????????');
   Article.create({
     title: req.body.title,
     author: req.body.author,
-    content: req.body.content
+    content: req.body.content,
+    pictureURL: 'img/' + req.body.picFileName
   })
 
   res.redirect('thanks');
