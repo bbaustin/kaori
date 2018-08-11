@@ -44,7 +44,7 @@ HomeController.route('/update')
 .post(function(req, res, next) {
   Article.findOneAndUpdate(
     {_id: req.body.idToChange}, 
-    { $set: {'title': req.body.titleToChange, 'content': req.body.contentToChange}},   /// didn't work lol 
+    { $set: {'title': req.body.titleToChange, 'content': req.body.contentToChange, 'pictureURL': req.body.pictureURLToChange}},
     {new: true},
     function (err) {
       if(err) {
