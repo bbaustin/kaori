@@ -11,7 +11,24 @@ h1,h2,h3,h4,h5,h6 {
 
 nav {
   display: flex;
-  justify-content: space-around
+  justify-content: space-around;
+  height: 40px;
+  background: @lightteal;
+  color: teal;
+  border-bottom: 3px solid @black;
+}
+
+a { 
+  text-decoration: none;
+  cursor: pointer;
+  color: @teal;
+}
+a:visited {
+  color: @teal;
+}
+
+.welcomeContentContainer {
+  padding: 10px 12px;
 }
 
 .content, #contentToChange {
@@ -19,49 +36,63 @@ nav {
 }
 
 .rightMain {
-  width: 40%;
+  width: 38%;
   min-height: 100px;
   float: left;
   background: @lightpink;
   border-radius: 10px;
   color: @black;
+  margin: 3% 2% 1% 4%;
+
+  -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);
 }
 
 .leftMain {
   float: left;
   display: flex;
   flex-direction: column;
-  width: 60%;
-  a { 
-    text-decoration: none;
-    cursor: pointer;
-  }
+  width: 55%;
+  margin-top: 3%; 
+
   .artbox {
     background: @lightteal;
-    width: 100%;
-    margin: 1%;
-    // display: flex;
-    
+    width: 98%;
+    margin: 0% 3% 5% 4%;
+
     border-radius: 10px;
     color: @black;
     text-decoration: none;
     clear: both;
+
+    -webkit-box-shadow: -5px -5px 0px 0px rgba(73,73,73,1);
+    -moz-box-shadow: -5px -5px 0px 0px rgba(73,73,73,1);
+    box-shadow: -5px -5px 0px 0px rgba(73,73,73,1);
     img {
       width: 100%;
+      position: relative;
+      bottom: 20px;
+      left: 15px;
+      border: 3px solid @black;
     }
     .aTop {
       width: 100%;
+      padding: 10px;
     }
     .aLeft {
       float: left;
-      width: 70%;
+      width: 60%;
+      padding-left: 10px;
+      p {
+        white-space: pre-wrap;
+      }
     }
     .aRight {
       float: left;
       width: 30%;
     }
   }
-
 }
 
 input, textarea {
@@ -76,7 +107,7 @@ input, textarea {
 }
 
 .clearfix:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }

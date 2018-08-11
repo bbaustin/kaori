@@ -16,47 +16,75 @@ h6 {
 nav {
   display: flex;
   justify-content: space-around;
+  height: 40px;
+  background: #abd6d7;
+  color: teal;
+  border-bottom: 3px solid #494949;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #00a99d;
+}
+a:visited {
+  color: #00a99d;
+}
+.welcomeContentContainer {
+  padding: 10px 12px;
 }
 .content,
 #contentToChange {
   white-space: pre-wrap;
 }
 .rightMain {
-  width: 40%;
+  width: 38%;
   min-height: 100px;
   float: left;
   background: #f0c4d7;
   border-radius: 10px;
   color: #494949;
+  margin: 3% 2% 1% 4%;
+  -webkit-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.75);
 }
 .leftMain {
   float: left;
   display: flex;
   flex-direction: column;
-  width: 60%;
-}
-.leftMain a {
-  text-decoration: none;
-  cursor: pointer;
+  width: 55%;
+  margin-top: 3%;
 }
 .leftMain .artbox {
   background: #abd6d7;
-  width: 100%;
-  margin: 1%;
+  width: 98%;
+  margin: 0% 3% 5% 4%;
   border-radius: 10px;
   color: #494949;
   text-decoration: none;
   clear: both;
+  -webkit-box-shadow: -5px -5px 0px 0px #494949;
+  -moz-box-shadow: -5px -5px 0px 0px #494949;
+  box-shadow: -5px -5px 0px 0px #494949;
 }
 .leftMain .artbox img {
   width: 100%;
+  position: relative;
+  bottom: 20px;
+  left: 15px;
+  border: 3px solid #494949;
 }
 .leftMain .artbox .aTop {
   width: 100%;
+  padding: 10px;
 }
 .leftMain .artbox .aLeft {
   float: left;
-  width: 70%;
+  width: 60%;
+  padding-left: 10px;
+}
+.leftMain .artbox .aLeft p {
+  white-space: pre-wrap;
 }
 .leftMain .artbox .aRight {
   float: left;
@@ -72,7 +100,7 @@ textarea {
   top: 50px;
 }
 .clearfix:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }

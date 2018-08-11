@@ -13,12 +13,16 @@ var ajax = {
     //check if shelf exists 
     for (var i = articles.length-1; i >= 0; i--) {
         storedArticles.push(articles[i]); 
+        // Careful: If the append below is missing some part, the page may
+        // load infinitely trying to find it. Proven case was with pictures. 
         $('.leftMain').append(
-          '<a href="/' + articles[i]._id        + '"> <div class="artbox clearfix">  <div class="aTop">  <h3> ' 
-                       + articles[i].title      + '   </h3>                 <small>' 
-                       + articles[i].date       + '   </small>              </div>              <div class="aLeft">   <p>' 
-                       + articles[i].content    + '   </p>                  </div>              <div class="aRight">  <img src="' 
-                       + articles[i].pictureURL + '"> </div>                </div>              </a>'
+          '<div class="artbox clearfix">  <div class="aTop">     <a href="' 
+            + articles[i]._id        + '"> <h1> ' 
+            + articles[i].title      + '   </h1>                 </a>                <small>' 
+            + articles[i].date       + '   </small>              </div>              <div class="aLeft">   <p>' 
+            + articles[i].content    + '   </p>                  </div>              <div class="aRight">  <a href="'
+            + articles[i]._id        + '"> <img src="' 
+            + articles[i].pictureURL + '"> </a>                  </div>              </div>'
         );
         
     }
