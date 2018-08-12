@@ -1,8 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Questrial', sans-serif;
-  background: linear-gradient(#f06eaa 40%, #00a99d) fixed;
+  background: #fff;
+  line-height: 1.4;
+  color: #494949;
 }
 h1,
 h2,
@@ -12,22 +13,42 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
+  display: inline-block;
+  margin-right: 5px;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
 }
-nav {
+p,
+li,
+small {
+  font-family: 'Vollkorn', serif;
+  font-family: 'Rokkitt', serif;
+  font-family: 'Crimson Text', serif;
+  color: #494949;
+}
+header {
+  border-bottom: 1px solid #494949;
+}
+header h1 {
+  font-kerning: 2rem;
+}
+.admin {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
-  height: 40px;
-  background: #abd6d7;
-  color: teal;
-  border-bottom: 3px solid #494949;
+  height: 20px;
+  border-top: 1px solid #494949;
 }
 a {
   text-decoration: none;
   cursor: pointer;
-  color: #00a99d;
+  color: #494949;
 }
 a:visited {
-  color: #00a99d;
+  color: #494949;
 }
 .welcomeContentContainer {
   padding: 10px 12px;
@@ -40,13 +61,7 @@ a:visited {
   width: 38%;
   min-height: 100px;
   float: left;
-  background: #f0c4d7;
-  border-radius: 10px;
-  color: #494949;
   margin: 3% 2% 1% 4%;
-  -webkit-box-shadow: 5px 5px 0px 0px #494949;
-  -moz-box-shadow: 5px 5px 0px 0px #494949;
-  box-shadow: 5px 5px 0px 0px #494949;
 }
 .leftMain {
   float: left;
@@ -54,41 +69,24 @@ a:visited {
   flex-direction: column;
   width: 55%;
   margin-top: 3%;
+  border-right: 1px solid #494949;
 }
 .leftMain .artbox {
-  background: #abd6d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 98%;
   margin: 0% 3% 5% 4%;
-  border-radius: 10px;
   color: #494949;
   text-decoration: none;
   clear: both;
-  -webkit-box-shadow: -5px -5px 0px 0px #494949;
-  -moz-box-shadow: -5px -5px 0px 0px #494949;
-  box-shadow: -5px -5px 0px 0px #494949;
 }
 .leftMain .artbox img {
-  width: 100%;
-  position: relative;
-  bottom: 20px;
-  left: 15px;
-  border: 3px solid #494949;
+  width: 94%;
+  border: 1px solid #494949;
 }
-.leftMain .artbox .aTop {
-  width: 100%;
-  padding: 10px;
-}
-.leftMain .artbox .aLeft {
-  float: left;
-  width: 60%;
-  padding-left: 10px;
-}
-.leftMain .artbox .aLeft p {
+.leftMain .artbox p {
   white-space: pre-wrap;
-}
-.leftMain .artbox .aRight {
-  float: left;
-  width: 30%;
 }
 input,
 textarea {

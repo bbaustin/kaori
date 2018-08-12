@@ -16,13 +16,13 @@ var ajax = {
         // Careful: If the append below is missing some part, the page may
         // load infinitely trying to find it. Proven case was with pictures. 
         $('.leftMain').append(
-          '<div class="artbox clearfix">  <div class="aTop">     <a href="' 
-            + articles[i]._id        + '"> <h1> ' 
-            + articles[i].title      + '   </h1>                 </a>                <small>' 
-            + articles[i].date       + '   </small>              </div>              <div class="aLeft">   <p>' 
-            + articles[i].content    + '   </p>                  </div>              <div class="aRight">  <a href="'
-            + articles[i]._id        + '"> <img src="' 
-            + articles[i].pictureURL + '"> </a>                  </div>              </div>'
+          '<div class="artbox clearfix">   <a href="' 
+            + articles[i]._id              + '"> <h1> ' 
+            + articles[i].title            + '   </h1>                 </a>                <small>' 
+            + articles[i].date.slice(0,10) + '   </small>              <a href="'
+            + articles[i]._id              + '"> <img src="' 
+            + articles[i].pictureURL       + '"> </a>                  <p>' 
+            + articles[i].content          + '   </p>                  </div>'
         );
         
     }
