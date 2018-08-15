@@ -3,7 +3,7 @@ var express         = require('express'),
     HomeController  = express.Router(),
     User            = require(__dirname + '/../models/user'),
     Article         = require(__dirname + '/../models/article'),
-    // bcrypt          = require('bcrypt'),
+    bcrypt          = require('bcrypt'),
     session         = require('express-session');
        
 
@@ -14,6 +14,12 @@ HomeController.route('/getAll')
     });
 });
 
+HomeController.route('/getAllUsers')
+  .get(function(req,res,next) {
+    User.find(function(err, users) {
+      res.json(users);
+    });
+  });
 
 HomeController.route('/thanks') 
 .get(function(req,res,next) {
@@ -21,9 +27,172 @@ HomeController.route('/thanks')
 })
 
 
+
+//    _   ___  __  __ ___ _  _      ___ _____ _   _ ___ ___ 
+//   /_\ |   \|  \/  |_ _| \| |    / __|_   _| | | | __| __|
+//  / _ \| |) | |\/| || || .` |    \__ \ | | | |_| | _|| _| 
+// /_/ \_\___/|_|  |_|___|_|\_|    |___/ |_|  \___/|_| |_|                                                           
+
+HomeController.route('/adminPortal')
+.get(function(req,res,next) {
+  console.log(req.session.userId, 'this is the session variable')
+  if (req.session.userId) {
+    User.findById(req.session.userId, function(err, user) {
+      console.log(user, 'this is userfind function');
+      res.render('adminPortal', {
+        username: user.username
+      });
+    });
+  }
+  else {
+    console.log('not logged in!');
+    res.render('home');
+  }  
+})
+
+//Add log in security here, too, using session. 
+HomeController.route('/adminMake')
+.get(function(req,res,next) {
+  if (req.session.userId) {
+    User.findById(req.session.userId, function(err, user) {
+      res.render('adminMake');
+    });
+  }
+  else {
+    console.log('not logged in!');
+    res.render('home');
+  }  
+})
+// Register new user
+.post(function(req, res, next) {
+  User.findOne({username: req.body.username}, function(err, user) {
+    // Should username already exist
+    if (err || user) {
+    res.render('adminMake', {
+    message: user ? "That username already exists!" : false
+    });
+    } 
+    // Require all Sign Up fields to be completed
+    else if (!user) {
+      if ((req.body.password === '') || (req.body.password_confirmation === '') || (req.body.username === '') || (req.body.nickname === '') || (req.body.secret === '')) {
+        res.render('adminMake', {
+        message: !user ? 'Please complete all fields!' : false
+        });
+      }
+      // Require password and password confirmation to match
+      else if (req.body.password !== req.body.password_confirmation) {
+        res.render('adminMake', {
+          message: req.body.password !== req.body.password_confirmation ? 'Your passwords do not match!' : false 
+        });
+      }
+      // If secret is not correctly input. CHANGE THIS LATER lol 
+      else if (req.body.secret !== '12345') {
+        res.render('adminMake', {
+          message: 'Dont try to sneak into my website'
+        })
+      }
+      // If passwords match
+      else if (req.body.password === req.body.password_confirmation) {
+        // Make password secure with bcrypt
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+          // Create new user document
+          User.create({
+          username: req.body.username,
+          password: hash,
+          nickname: req.body.nickname
+          },
+          function(err, user) {
+            if (err) {
+              console.log(err);
+              res.render('adminMake', {
+                message: 'Please see Error Console'
+              });
+            }
+            else {
+              console.log(user);
+              console.log(req.session);
+              req.session.isLoggedIn = true;
+              req.session.userId     = user._id;
+              res.redirect('/adminPortal');
+            }
+          });
+        });
+      }
+    }
+  });
+});
+
+HomeController.route('/adminLogin') 
+.get(function(req,res,next) {
+  res.render('adminLogin');
+})
+.post(function(req, res, next) {
+  // Find user by username
+  User.findOne( {username: req.body.username }, function(err, user) {
+    // Require that all fields are completed
+    if ((req.body.password === '') || (req.body.username === '')) {
+      res.render('adminLogin', {
+      message: (req.body.password === '') || (req.body.username === '') ? 'Please complete all fields!' : false
+    });
+    console.log('incomplete fields');
+    }
+    // Should username not exist
+    else if (err || !user) {
+      res.render('adminLogin', {
+      message: req.session.isLoggedIn ? true : "Username not found!"
+      });
+    console.log('username not found');
+    }
+    else {
+      // Compare the password with hashed db password 
+      bcrypt.compare(req.body.password, user.password, function(err, result) {
+        if (err) {
+          console.log(err);
+          res.send('ERROR: ' + err);
+        }
+        else if (result) {
+          console.log(user)
+          req.session.isLoggedIn = true;
+          req.session.userId     = user._id;
+          res.redirect('/adminPortal');
+        } 
+        else {
+          res.render('adminLogin', {
+          message: req.session.isLoggedIn ? true : "Your password is incorrect!"
+          });
+        }
+      });
+    }
+  });
+});
+
+//////    _   ___  __  __ ___ _  _      ___ _____ _   _ ___ ___ 
+//////   /_\ |   \|  \/  |_ _| \| |    / __|_   _| | | | __| __|
+//////  / _ \| |) | |\/| || || .` |    \__ \ | | | |_| | _|| _| 
+////// /_/ \_\___/|_|  |_|___|_|\_|    |___/ |_|  \___/|_| |_| 
+
+
+
+
+                                                           
+// ,------. ,------. ,---. ,--------.,------.,--. ,--.,--.    
+// |  .--. '|  .---''   .-''--.  .--'|  .---'|  | |  ||  |    
+// |  '--'.'|  `--, `.  `-.   |  |   |  `--, |  | |  ||  |    
+// |  |\  \ |  `---..-'    |  |  |   |  |`   '  '-'  '|  '--. 
+// `--' '--'`------'`-----'   `--'   `--'     `-----' `-----' 
+                                                           
+
 HomeController.route('/delete')
 .get(function(req, res, next) {
-  res.render('delete');
+  if (req.session.userId) {
+    User.findById(req.session.userId, function(err, user) {
+      res.render('delete');
+    });
+  }
+  else {
+    console.log('not logged in!');
+    res.render('home');
+  }  
 })
 .post(function(req, res, next) {
   Article.findOneAndDelete({_id: req.body.idToChange}, function(err){
@@ -39,7 +208,15 @@ HomeController.route('/delete')
 
 HomeController.route('/update')
 .get(function(req, res, next) {
-  res.render('update');
+  if (req.session.userId) {
+    User.findById(req.session.userId, function(err, user) {
+      res.render('update');
+    });
+  }
+  else {
+    console.log('not logged in!');
+    res.render('home');
+  }  
 })
 .post(function(req, res, next) {
   Article.findOneAndUpdate(
@@ -57,17 +234,17 @@ HomeController.route('/update')
     });
 });
 
-
-// db.restaurant.updateOne(
-//       { "name" : "Central Perk Cafe" },
-//       { $set: { "violations" : 3 } }
-//    );
-
-
-
 HomeController.route('/make') 
 .get(function(req, res, next) {
-  res.render('make')
+  if (req.session.userId) {
+    User.findById(req.session.userId, function(err, user) {
+      res.render('make');
+    });
+  }
+  else {
+    console.log('not logged in!');
+    res.render('home');
+  }  
 })
 .post(function(req, res, next) {
   Article.create({
@@ -76,14 +253,16 @@ HomeController.route('/make')
     content: req.body.content,
     pictureURL: req.body.picFileName  //NOTE: Do you want to add  <    'img/' +  >  here? 
   })
-
   res.redirect('thanks');
 });
+                                                           
+//////// ,------. ,------. ,---. ,--------.,------.,--. ,--.,--.    
+//////// |  .--. '|  .---''   .-''--.  .--'|  .---'|  | |  ||  |    
+//////// |  '--'.'|  `--, `.  `-.   |  |   |  `--, |  | |  ||  |    
+//////// |  |\  \ |  `---..-'    |  |  |   |  |`   '  '-'  '|  '--. 
+//...... `--' '--'`------'`-----'   `--'   `--'     `-----' `-----' 
+                                                           
 
-
-/* DELETE /tasks/:id        
-// working! was throwing an error, because you were res.json'ing, then trying to render a page (or vice versa). This allows ANY USER to type in an ID (which is ostensibly hidden?) in the URL and delete that in the DB.  */
-// getting a favico error 
 HomeController.route('/:id') 
   .get(function(req, res, next) {
     Article.findById(req.params.id, function(err, art) {
