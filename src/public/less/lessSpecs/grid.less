@@ -116,13 +116,13 @@ a:visited {
   display: flex;
   width: 33%;
   min-height: 100px;
-  float: right;
+  float: left;
   padding: 3% 2% 1% 4%;
   // border-left: 1px solid @black;
 }
 
 .leftMain {
-  float: right;
+  float: left;
   display: flex;
   flex-direction: column;
   width: 67%;
@@ -174,7 +174,17 @@ input, textarea {
 
 
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
+  .leftMain{
+    width:85%;
+    margin: 0 auto;
+    float: none;
+    border: none;
+  }
+  .rightMain {
+    width: 100%;
+    margin: 0 auto;
+  }
 
 
 

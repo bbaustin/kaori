@@ -36,6 +36,27 @@ require('./db/db');
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', require('./controllers/home'));
+app.use('/admin', require('./controllers/admin'));
+app.use(function(req, res, next){
+  res.status(404);
+
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
+
+  // respond with json
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
+
+  // default to plain-text. send()
+  res.type('txt').send('Not found');
+});
+
+
 // app.use('/', function(req, res, next) {
 //   if (req.session.isLoggedIn === true) {
 //     return next();

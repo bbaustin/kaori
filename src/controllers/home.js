@@ -26,6 +26,11 @@ HomeController.route('/thanks')
   res.render('thanks');
 })
 
+HomeController.route('/archive')
+.get(function(req,res,next) {
+  res.render('archive');
+})
+
 
 
 //    _   ___  __  __ ___ _  _      ___ _____ _   _ ___ ___ 
@@ -46,11 +51,10 @@ HomeController.route('/adminPortal')
   }
   else {
     console.log('not logged in!');
-    res.render('home');
+    res.render('404');
   }  
 })
 
-//Add log in security here, too, using session. 
 HomeController.route('/adminMake')
 .get(function(req,res,next) {
   if (req.session.userId) {
@@ -60,7 +64,7 @@ HomeController.route('/adminMake')
   }
   else {
     console.log('not logged in!');
-    res.render('home');
+    res.render('404');
   }  
 })
 // Register new user
@@ -191,7 +195,7 @@ HomeController.route('/delete')
   }
   else {
     console.log('not logged in!');
-    res.render('home');
+    res.render('404');
   }  
 })
 .post(function(req, res, next) {
@@ -215,7 +219,7 @@ HomeController.route('/update')
   }
   else {
     console.log('not logged in!');
-    res.render('home');
+    res.render('404');
   }  
 })
 .post(function(req, res, next) {
@@ -243,7 +247,7 @@ HomeController.route('/make')
   }
   else {
     console.log('not logged in!');
-    res.render('home');
+    res.render('404');
   }  
 })
 .post(function(req, res, next) {
@@ -251,6 +255,7 @@ HomeController.route('/make')
     title: req.body.title,
     author: req.body.author,
     content: req.body.content,
+    views: 0,
     pictureURL: req.body.picFileName  //NOTE: Do you want to add  <    'img/' +  >  here? 
   })
   res.redirect('thanks');
@@ -265,39 +270,49 @@ HomeController.route('/make')
 
 HomeController.route('/:id') 
   .get(function(req, res, next) {
-    Article.findById(req.params.id, function(err, art) {
-      if (err) {
-        console.log(err)
-      }
-      else {
-        console.log('art: ' + art);
+    Article.findOneAndUpdate(   ///findOneAndUpdate, so that you can update Views. 
+      {_id: req.params.id},
+      {$inc: {views:1}},
+      {new: true}, 
+      function(err, art) {
+        if (err) {
+          console.log(err)
+          res.render('404');
+        }
+        else {
+          console.log('art: ' + art);
 
-        res.render('article', {
-          renPictureURL: 'img/' + art.pictureURL,
-          renTitle: art.title,
-          renAuthor: art.author,
-          renDate: art.date,
-          renContent: art.content
-        })
-      }
-    });
+          res.render('article', {
+            renPictureURL: 'img/' + art.pictureURL,
+            renTitle: art.title,
+            renAuthor: art.author,
+            renDate: art.date,
+            renContent: art.content
+          })
+        }
+      });
 });
 
 
 HomeController.route('/') 
 .get(function(req, res, next) {
   res.render('home', {
-    // message: 'PLACE A PARKING SPOT'
   })
 });
-// .post(function(req, res, next) {
-//   Article.create({
-//     title: req.body.title,
-//     author: req.body.author,
-//     content: req.body.content
-//   })
-//   res.redirect('thanks');
-// });
+
+
+// popular posts in front end. 
+// You can easily get views from javascript using AJAX call.
+// Do that and populate on each page, I guess.
+// Can you use a partial for the sidebar? Probably.
+
+// Anything else big you're missing? 
+  // Keywords is gonna be hard
+  // Similar logic can be used to link to author pages..? 
+  // Language. i18n
+  // Archive page (relatively easy)
+  // 
+
 
 
  
