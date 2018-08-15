@@ -1,8 +1,11 @@
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
   background: #fff;
-  line-height: 1.4;
+  line-height: 1.6;
   color: #494949;
 }
 h1,
@@ -19,6 +22,21 @@ h6 {
   text-transform: uppercase;
   text-align: center;
 }
+.circleImgContainer {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border: 1px #494949 solid;
+  border-radius: 100%;
+  margin: 0 auto 25px auto;
+}
+.articleTitleContainer {
+  line-height: 48px;
+  text-align: center;
+}
+img {
+  width: 100%;
+}
 p,
 li,
 small {
@@ -31,7 +49,9 @@ header {
   border-bottom: 1px solid #494949;
 }
 header h1 {
-  font-kerning: 2rem;
+  font-size: 40px;
+  padding-left: 10px;
+  letter-spacing: 5px;
 }
 .admin {
   position: fixed;
@@ -46,6 +66,7 @@ a {
   text-decoration: none;
   cursor: pointer;
   color: #494949;
+  display: inline;
 }
 a:visited {
   color: #494949;
@@ -56,34 +77,54 @@ a:visited {
 .content,
 #contentToChange {
   white-space: pre-wrap;
+  padding: 9%;
+}
+.cropBox {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+}
+.parallaxBox {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.blurBox {
+  width: 95%;
+  overflow: hidden;
+  border: 1px solid #494949;
 }
 .rightMain {
-  width: 38%;
+  display: flex;
+  width: 33%;
   min-height: 100px;
-  float: left;
-  margin: 3% 2% 1% 4%;
+  float: right;
+  padding: 3% 2% 1% 4%;
 }
 .leftMain {
-  float: left;
+  float: right;
   display: flex;
   flex-direction: column;
-  width: 55%;
-  margin-top: 3%;
+  width: 67%;
+  padding-top: 6%;
+  margin-top: -3%;
   border-right: 1px solid #494949;
 }
 .leftMain .artbox {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 98%;
+  width: 93%;
   margin: 0% 3% 5% 4%;
   color: #494949;
   text-decoration: none;
   clear: both;
 }
 .leftMain .artbox img {
-  width: 94%;
-  border: 1px solid #494949;
+  width: 103%;
+  filter: blur(4px);
+  margin: -10px -5px -10px -5px;
+  opacity: 0.8;
+  display: block;
 }
 .leftMain .artbox p {
   white-space: pre-wrap;

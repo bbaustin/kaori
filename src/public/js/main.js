@@ -20,13 +20,11 @@ var ajax = {
             + articles[i]._id              + '"> <h1> ' 
             + articles[i].title            + '   </h1>                 </a>                <small>' 
             + articles[i].date.slice(0,10) + '   </small>              <a href="'
-            + articles[i]._id              + '"> <img src="' 
-            + articles[i].pictureURL       + '"> </a>                  <p>' 
+            + articles[i]._id              + '"> <div class="blurBox"> <img src="img/' 
+            + articles[i].pictureURL       + '"> </div>                </a>                <p>' 
             + articles[i].content          + '   </p>                  </div>'
         );
-        
     }
-
   },
   error: function(err) {
     console.log(err);

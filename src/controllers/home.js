@@ -51,7 +51,7 @@ HomeController.route('/update')
         console.log('update err: ' + err);
       }
       else {
-        console.log('update - no error i guess?')
+        console.log('Article Successfully Updated')
       }
       res.redirect('back');
     });
@@ -74,7 +74,7 @@ HomeController.route('/make')
     title: req.body.title,
     author: req.body.author,
     content: req.body.content,
-    pictureURL: 'img/' + req.body.picFileName
+    pictureURL: req.body.picFileName  //NOTE: Do you want to add  <    'img/' +  >  here? 
   })
 
   res.redirect('thanks');
@@ -86,25 +86,22 @@ HomeController.route('/make')
 // getting a favico error 
 HomeController.route('/:id') 
   .get(function(req, res, next) {
-    console.log(req.params.title);
     Article.findById(req.params.id, function(err, art) {
       if (err) {
         console.log(err)
       }
       else {
+        console.log('art: ' + art);
+
         res.render('article', {
+          renPictureURL: 'img/' + art.pictureURL,
           renTitle: art.title,
           renAuthor: art.author,
+          renDate: art.date,
           renContent: art.content
         })
       }
     });
-    // console.log(req.params.id);
-    // Article.findByIdAndRemove(req.params.id, function (err, task) {
-    //   console.log(req.params.id);
-    //   if (err) return next(err);
-    //   res.json(task);
-    // });
 });
 
 

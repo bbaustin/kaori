@@ -26,7 +26,7 @@ var ajax = {
       $('#idToChange').val(changing._id);
       $('#titleToChange').val(changing.title);
       $('#contentToChange').val(changing.content);
-      $('#pictureURLToChange').val('img/' + changing.pictureURL)
+      $('#pictureURLToChange').val(changing.pictureURL)
 
     })
 

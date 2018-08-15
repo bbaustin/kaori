@@ -1,6 +1,24 @@
-<h6>article.hbs</h6>
+<div class="leftMain" style="padding-top:48px"> <!-- messy -->
+  
+  <div class="articleTitleContainer">
+    <h1>    {{renTitle}}  </h1>
+  </div>
 
-<h1>{{renTitle}}</h1>
-<small>{{renAuthor}}</small>
 
-<div class="content">{{renContent}}</div>
+
+<!--   <div class="parallaxBox" style="background-image: url({{renPictureURL}})>">
+ -->    <img src={{renPictureURL}} >  <!-- NOTE: eventually add alt as a database entry
+   </div>
+ -->  
+
+
+    <small> {{renAuthor}} </small>
+    <small> {{renDate}}   </small>
+
+
+
+  <div class="contentContainer">
+    <div class="content">{{renContent}}</div>
+  </div>
+
+
