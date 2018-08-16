@@ -57,15 +57,16 @@ HomeController.route('/adminPortal')
 
 HomeController.route('/adminMake')
 .get(function(req,res,next) {
-  if (req.session.userId) {
-    User.findById(req.session.userId, function(err, user) {
-      res.render('adminMake');
-    });
-  }
-  else {
-    console.log('not logged in!');
-    res.render('404');
-  }  
+  res.render('adminMake');
+  // if (req.session.userId) {
+  //   User.findById(req.session.userId, function(err, user) {
+  //     res.render('adminMake');
+  //   });
+  // }
+  // else {
+  //   console.log('not logged in!');
+  //   res.render('404');
+  // }  
 })
 // Register new user
 .post(function(req, res, next) {
