@@ -30,6 +30,12 @@ h6 {
   border-radius: 100%;
   margin: 0 auto 25px auto;
 }
+.en {
+  display: initial;
+}
+.ja {
+  display: none;
+}
 .articleTitleContainer {
   line-height: 48px;
   text-align: center;
@@ -134,7 +140,9 @@ textarea {
   display: block;
 }
 .toChange {
-  position: fixed;
+  position: absolute;
+  background: #fff;
+  padding: 10px;
   right: 50px;
   top: 50px;
 }

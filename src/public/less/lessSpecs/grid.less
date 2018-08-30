@@ -27,6 +27,14 @@ h1,h2,h3,h4,h5,h6 {
   margin: 0 auto 25px auto;
 }
 
+.en {
+  display: initial;
+}
+
+.ja {
+  display: none;
+}
+
 .articleTitleContainer {
   line-height: 48px; //corresponds with height of this section of the page. See article.hbs top container inline styling.
   text-align: center;
@@ -151,7 +159,9 @@ input, textarea {
 }
 
 .toChange {
-  position: fixed;
+  position: absolute;
+  background: #fff;
+  padding: 10px;
   right: 50px;
   top: 50px;
 

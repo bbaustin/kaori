@@ -226,7 +226,7 @@ HomeController.route('/update')
 .post(function(req, res, next) {
   Article.findOneAndUpdate(
     {_id: req.body.idToChange}, 
-    { $set: {'title': req.body.titleToChange, 'content': req.body.contentToChange, 'pictureURL': req.body.pictureURLToChange}},
+    { $set: {'title': req.body.titleToChange, 'jpnTitle': req.body.jpnTitle, 'author': req.body.author, 'content': req.body.contentToChange, 'jpnContent': req.body.jpnContent, 'pictureURL': req.body.pictureURLToChange, 'keywords': req.body.keywords}},
     {new: true},
     function (err) {
       if(err) {
@@ -254,8 +254,11 @@ HomeController.route('/make')
 .post(function(req, res, next) {
   Article.create({
     title: req.body.title,
+    jpnTitle: req.body.jpnTitle,
     author: req.body.author,
     content: req.body.content,
+    jpnContent: req.body.jpnContent,
+    keywords: req.body.keywords,
     views: 0,
     pictureURL: req.body.picFileName  //NOTE: Do you want to add  <    'img/' +  >  here? 
   })
@@ -283,12 +286,19 @@ HomeController.route('/:id')
         else {
           console.log('art: ' + art);
 
-          res.render('article', {
-            renPictureURL: 'img/' + art.pictureURL,
+          res.render('article', {            
+            
             renTitle: art.title,
+            renJpnTitle: art.jpnTitle,
+            
             renAuthor: art.author,
-            renDate: art.date,
-            renContent: art.content
+            
+            renContent: art.content,
+            renJpnContent: art.jpnContent,
+
+            renPictureURL: 'img/' + art.pictureURL,
+            renKeywords: art.keywords,
+            renDate: art.date
           })
         }
       });

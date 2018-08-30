@@ -25,9 +25,11 @@ var ajax = {
       console.log(changing);
       $('#idToChange').val(changing._id);
       $('#titleToChange').val(changing.title);
+      $('#jpnTitleToChange').val(changing.jpnTitle);
       $('#contentToChange').val(changing.content);
-      $('#pictureURLToChange').val(changing.pictureURL)
-
+      $('#jpnContentToChange').val(changing.jpnContent);
+      $('#keywords').val(changing.keywords); //not working right now
+      $('#pictureURLToChange').val(changing.pictureURL);
     })
 
   },

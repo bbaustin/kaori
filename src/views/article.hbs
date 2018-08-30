@@ -1,24 +1,35 @@
 <div class="leftMain" style="padding-top:48px"> <!-- messy? -->
   
-  <div class="articleTitleContainer">
-    <h1>    {{renTitle}}  </h1>
+  <div class="articleTitleContainer en">
+    <h1> {{renTitle}} </h1>
+  </div>
+
+  <div class="articleTitleContainer ja">
+    <h1> {{renJpnTitle}} </h1>
   </div>
 
 
 
-<!--   <div class="parallaxBox" style="background-image: url({{renPictureURL}})>">
- -->    <img src={{renPictureURL}} >  <!-- NOTE: eventually add alt as a database entry
-   </div>
- -->  
+<!--   <div class="parallaxBox" style="background-image: url({{renPictureURL}})>"> -->    
+  <img src={{renPictureURL}} >  
+<!-- NOTE: eventually add alt as a database entry
+      </div> -->  
+
+  <small> {{renAuthor}} </small>
+  <small> {{renDate}}   </small>
 
 
-    <small> {{renAuthor}} </small>
-    <small> {{renDate}}   </small>
 
-
-
-  <div class="contentContainer">
+  <div class="contentContainer en">
     <div class="content">{{renContent}}</div>
   </div>
+
+  <div class="contentContainer ja">
+    <div class="content">{{renJpnContent}}</div>
+  </div>
+
+  <p>{{renKeywords}}</p> <p>Delete this later, haha</p>
+
 </div>
+
 
