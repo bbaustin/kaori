@@ -136,6 +136,9 @@ a:visited {
 .leftMain .artbox p {
   white-space: pre-wrap;
 }
+form {
+  margin-left: 50px;
+}
 input,
 textarea {
   display: block;
@@ -146,9 +149,14 @@ textarea {
   font-family: 'Raleway', sans-serif;
   font-size: 25px;
   padding-left: 8px;
+  margin-bottom: 15px;
+}
+#submit {
+  background: #f9bfd9;
+  border: 1px solid #494949;
 }
 textarea {
-  width: 300px;
+  width: 600px;
   height: 500px;
 }
 .toChange {
