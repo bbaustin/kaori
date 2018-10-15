@@ -13,7 +13,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
   margin: 0;
   padding: 0;
   display: inline-block;
@@ -138,6 +139,17 @@ a:visited {
 input,
 textarea {
   display: block;
+  border-radius: 10px;
+  border: 1px solid #f9bfd9;
+  width: 300px;
+  height: 50px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 25px;
+  padding-left: 8px;
+}
+textarea {
+  width: 300px;
+  height: 500px;
 }
 .toChange {
   position: absolute;
